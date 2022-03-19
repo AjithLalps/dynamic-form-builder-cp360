@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FormsFormRequest;
 use App\Models\Form;
 use Exception;
-use Illuminate\Auth\Events\Validated;
 
 class FormController extends Controller
 {
@@ -19,7 +18,7 @@ class FormController extends Controller
     {
         $forms = Form::paginate(25);
 
-        return view('forms.index', compact('forms'));
+        return view('admin.forms.index', compact('forms'));
     }
 
     /**
@@ -29,7 +28,7 @@ class FormController extends Controller
      */
     public function create()
     {
-        return view('forms.create');
+        return view('admin.forms.create');
     }
 
     /**
@@ -64,7 +63,7 @@ class FormController extends Controller
     {
         $form = Form::findOrFail($id);
 
-        return view('forms.edit', compact('form'));
+        return view('admin.forms.edit', compact('form'));
     }
 
     /**

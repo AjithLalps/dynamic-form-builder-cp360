@@ -36,7 +36,7 @@
             accept-charset="UTF-8" class="form-horizontal">
             {{ csrf_field() }}
             <input name="_method" type="hidden" value="PUT">
-            @include ('forms.form', [
+            @include ('admin.forms.form', [
             'form' => $form,
             ])
 

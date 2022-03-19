@@ -31,7 +31,7 @@
                 <form method="POST" action="{{ route('form.store') }}" accept-charset="UTF-8" id="create_form"
                     name="create_form_form" class="form-horizontal">
                     {{ csrf_field() }}
-                    @include ('forms.form', [
+                    @include ('admin.forms.form', [
                     'form' => null,
                     ])
 
