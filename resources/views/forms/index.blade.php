@@ -1,26 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-
-@if(Session::has('success_message'))
-<div class="alert alert-success">
-    <span class="fa fa-tick"></span>
-    {!! session('success_message') !!}
-</div>
-@endif
-
 <div class="card">
 
     <div class="card-header">
 
         <div class="float-start">
-            <h4>Forms</h4>
-        </div>
-
-        <div class="btn-group btn-group-sm float-end" role="group">
-            <a href="{{ route('form.create') }}" class="btn btn-success" title="Create New Form">
-                Create
-            </a>
+            <h4>Available Forms</h4>
         </div>
 
     </div>
@@ -47,26 +33,12 @@
                         <td>{{ $form->code }}</td>
 
                         <td>
-
-                            <form method="POST" action="{!! route('form.destroy', $form->id) !!}"
-                                accept-charset="UTF-8">
-                                <input name="_method" value="DELETE" type="hidden">
-                                {{ csrf_field() }}
-
-                                <div class="btn-group btn-group-xs float-end" role="group">
-                                    <a href="{{ route('form.edit', $form->id ) }}" class="btn btn-primary"
-                                        title="Edit Form">
-                                        Edit
-                                    </a>
-
-                                    <button type="submit" class="btn btn-danger" title="Delete Form"
-                                        onclick="return confirm(&quot;Click Ok to delete Form.&quot;)">
-                                        Delete
-                                    </button>
-                                </div>
-
-                            </form>
-
+                            <div class="btn-group btn-group-xs float-end" role="group">
+                                <a href="{{ route('forms.show', $form->code ) }}" class="btn btn-primary"
+                                    title="View Form">
+                                    View
+                                </a>
+                            </div>
                         </td>
                     </tr>
                     @endforeach
@@ -75,11 +47,6 @@
 
         </div>
     </div>
-
-    <div class="card-footer">
-        {!! $forms->render() !!}
-    </div>
-
     @endif
 
 </div>

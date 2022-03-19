@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FormController;
+use App\Http\Controllers\Admin\FormController;
+use App\Http\Controllers\FormListingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +15,11 @@ use App\Http\Controllers\FormController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes(['register' => false]);
 
 Route::middleware('auth')
     ->resource('form', FormController::class)
     ->except('show');
+
+Route::get('/', [FormListingController::class, 'index'])->name('forms.index');
+Route::get('/forms/{code}', [FormListingController::class, 'show'])->name('forms.show');

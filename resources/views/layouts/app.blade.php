@@ -44,6 +44,9 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @auth
+                        <a href="{{ route('form.index') }}"
+                            class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -61,6 +64,9 @@
                                 </form>
                             </div>
                         </li>
+                        @else
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log
+                            in</a>
                         @endauth
                     </ul>
                 </div>
