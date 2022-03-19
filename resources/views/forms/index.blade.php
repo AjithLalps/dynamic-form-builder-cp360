@@ -6,11 +6,6 @@
 <div class="alert alert-success">
     <span class="fa fa-tick"></span>
     {!! session('success_message') !!}
-
-    <button type="button" class="close" data-dismiss="alert" aria-label="close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-
 </div>
 @endif
 
@@ -42,8 +37,6 @@
                 <thead>
                     <tr>
                         <th>Code</th>
-                        <th>Name</th>
-                        <th>Content</th>
 
                         <th></th>
                     </tr>
@@ -52,8 +45,6 @@
                     @foreach($forms as $form)
                     <tr>
                         <td>{{ $form->code }}</td>
-                        <td>{{ $form->name }}</td>
-                        <td>{{ $form->content }}</td>
 
                         <td>
 

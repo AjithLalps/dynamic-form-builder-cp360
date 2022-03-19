@@ -13,16 +13,23 @@ class Form extends Model
      */
     protected $fillable = [
         'code',
-        'name',
         'content'
     ];
     
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
+     * @inherited
      */
-    protected $casts = [
-        'content' => 'collection'
-    ];
+    public static function boot()
+    {
+        parent::boot();
+        
+        self::creating(
+            function ($model) {
+                $count = self::max('id') + 1;
+                
+                $model->code = "FRM-" . str_pad($count, 6, 0, STR_PAD_LEFT);
+            }
+        );
+    
+    }
 }

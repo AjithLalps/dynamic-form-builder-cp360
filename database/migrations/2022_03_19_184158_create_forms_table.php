@@ -17,7 +17,6 @@ class CreateFormsTable extends Migration
         {
             $table->id();
             $table->string('code')->nullable();
-            $table->string('name', 255);
             $table->text('content');
             $table->timestamps();
 

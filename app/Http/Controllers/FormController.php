@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\FormsFormRequest;
 use App\Models\Form;
 use Exception;
+use Illuminate\Auth\Events\Validated;
 
 class FormController extends Controller
 {
@@ -78,13 +79,11 @@ class FormController extends Controller
     {
         try {
             $form = Form::findOrFail($id);
-
             $form->update($request->validated());
 
             return redirect()->route('form.index')
                 ->with('success_message', 'Form was successfully updated.');
         } catch (Exception $exception) {
-
             return back()->withInput()
                 ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request.']);
         }        
@@ -111,4 +110,5 @@ class FormController extends Controller
                 ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request.']);
         }
     }
+
 }

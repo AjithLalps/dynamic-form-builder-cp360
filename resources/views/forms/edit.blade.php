@@ -7,7 +7,7 @@
     <div class="card-header">
 
         <div class="float-start">
-            <h4 class="mt-5 mb-5">{{ !empty($form->name) ? $form->name : 'Form' }}</h4>
+            <h4>{{ !empty($form->code) ? $form->code : 'Form' }}</h4>
         </div>
         <div class="btn-group btn-group-sm float-end" role="group">
 
@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="panel-body">
+    <div class="card-body">
 
         @if ($errors->any())
         <ul class="alert alert-danger">
@@ -32,11 +32,11 @@
         </ul>
         @endif
 
-        <form method="POST" action="{{ route('form.update', $form->id) }}" id="edit_form_form" name="edit_form_form"
+        <form method="POST" action="{{ route('form.update', $form->id) }}" id="edit_form" name="edit_form"
             accept-charset="UTF-8" class="form-horizontal">
             {{ csrf_field() }}
             <input name="_method" type="hidden" value="PUT">
-            @include ('form', [
+            @include ('forms.form', [
             'form' => $form,
             ])
 
@@ -50,4 +50,37 @@
     </div>
 </div>
 
+@endsection
+@section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="https://formbuilder.online/assets/js/form-builder.min.js"></script>
+
+<script>
+    jQuery(function($) {
+
+        var options = {
+        disableFields: [
+            'autocomplete', 
+            'button',
+            'checkbox-group', 
+            'date', 
+            'file', 
+            'header', 
+            'hidden', 
+            'paragraph', 
+            'radio-group', 
+            'starRating', 
+            'textarea'
+            ],
+            showActionButtons: false,
+            formData: @json($form->content)
+        };
+
+        const formBuilder = $(document.getElementById('ed-content')).formBuilder(options);
+        $('#edit_form').submit(function(e) {
+           $('#content').val(formBuilder.actions.getData('json', true));
+        });
+    });
+</script>
 @endsection

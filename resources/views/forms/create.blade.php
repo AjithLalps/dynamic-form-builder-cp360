@@ -28,7 +28,7 @@
                 </ul>
                 @endif
 
-                <form method="POST" action="{{ route('form.store') }}" accept-charset="UTF-8" id="create_form_form"
+                <form method="POST" action="{{ route('form.store') }}" accept-charset="UTF-8" id="create_form"
                     name="create_form_form" class="form-horizontal">
                     {{ csrf_field() }}
                     @include ('forms.form', [
@@ -48,4 +48,37 @@
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="https://formbuilder.online/assets/js/form-builder.min.js"></script>
+
+<script>
+    jQuery(function($) {
+      
+        var options = {
+        disableFields: [
+            'autocomplete', 
+            'button',
+            'checkbox-group', 
+            'date', 
+            'file', 
+            'header', 
+            'hidden', 
+            'paragraph', 
+            'radio-group', 
+            'starRating', 
+            'textarea'
+            ],
+            showActionButtons: false,
+        };
+
+        const formBuilder = $(document.getElementById('ed-content')).formBuilder(options);
+        $('#create_form').submit(function(e) {
+           $('#content').val(formBuilder.actions.getData('json', true));
+        });
+    });
+</script>
 @endsection

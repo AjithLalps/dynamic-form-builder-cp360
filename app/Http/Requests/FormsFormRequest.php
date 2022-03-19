@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+
 class FormsFormRequest extends FormRequest
 {
     /**
@@ -24,7 +25,6 @@ class FormsFormRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'string|min:1|max:255',
             'content' => 'string|min:1',
         ];
 
